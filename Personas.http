@@ -1,1 +1,2 @@
-https://weblogin.muninqn.gov.ar/api/Examen
+GET http://weblogin.muninqn.gov.ar/api/Examen
+Accept: application/json
