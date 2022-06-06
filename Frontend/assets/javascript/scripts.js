@@ -1,4 +1,5 @@
 var personas = [];
+var cursos = [];
 const cargaInicialdeUsuarios = ()=>{
     axios({
         method: 'get',
@@ -83,8 +84,61 @@ const cursosAPItraerCursos = ()=>{
         responseType: 'json'
     }).then(res=>{
         console.log(res.data);
+        this.cursos = res.data;
+        generarListadoCursos();
+
     }).catch(err=>{
         console.error(err);
     })
 }
 cursosAPItraerCursos ()
+
+const generarListadoCursos = () => {
+    document.querySelector('#v-pills-tab').innerHTML += `
+    <a class="nav-link active" id="v-pills-${cursos[0].legajo}-tab" 
+    data-bs-toggle="pill" data-bs-target="#v-pills-${cursos[0].legajo}" 
+    role="tab" aria-controls="v-pills-${cursos[0].legajo}" aria-selected="true">
+                ${cursos[0].nombre_curso}
+            </a>
+    `;
+    document.querySelector('#v-pills-tabContent').innerHTML += `
+        <div class="tab-pane fade show active" id="v-pills-${cursos[0].legajo}" role="tabpanel" 
+        aria-labelledby="v-pills-${cursos[0].legajo}-tab" tabindex="0">
+                <div class="card border-primary border-2 p-3">
+                    <div class="card-header bg-primary text-light">
+                        <h5 class="card-title">${cursos[0].nombre_curso}</h5>
+                    </div>
+                    
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item fs-4">${cursos[0].modalidad==0?"Grupal":"Individual"}</li>
+                        <li class="list-group-item fs-4">${cursos[0].descripcion_curso}</li>
+                        <li class="list-group-item fs-4">10</li>
+                    </ul>
+                   
+                </div>
+            </div>`;
+    for (let i=1; i < this.cursos.length; i++){
+        document.querySelector('#v-pills-tab').innerHTML += `
+        <a className="nav-link" id="v-pills-${cursos[i].legajo}-tab" data-bs-toggle="pill"
+           data-bs-target="#v-pills-${cursos[i].legajo}" role="tab"
+           aria-controls="v-pills-${cursos[i].legajo}" aria-selected="false">
+            ${cursos[i].nombre_curso}
+        </a>`;
+        document.querySelector('#v-pills-tabContent').innerHTML += `
+        <div class="tab-pane fade" id="v-pills-${cursos[i].legajo}" role="tabpanel" 
+        aria-labelledby="v-pills-${cursos[i].legajo}-tab" tabindex="0">
+                <div class="card border-primary border-2 p-3">
+                    <div class="card-header bg-primary text-light">
+                        <h5 class="card-title">${cursos[i].nombre_curso}</h5>
+                    </div>
+                    
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item fs-4">${cursos[i].modalidad==0?"Grupal":"Individual"}</li>
+                        <li class="list-group-item fs-4">${cursos[i].descripcion_curso}</li>
+                        <li class="list-group-item fs-4">10</li>
+                    </ul>
+                   
+                </div>
+            </div>`;
+    }
+}

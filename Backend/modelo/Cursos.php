@@ -14,6 +14,8 @@ class Cursos{
         $this->modalidad = "";
     }
 
+    // Opciones de insercion y recuperacion de datos sobre el objeto
+
     public function insertarDatosCurso($legajo,$nombreCurso,$descripcion,$modalidad): void{
         $this->legajo = $legajo;
         $this->nombreCurso = $nombreCurso;
@@ -33,6 +35,18 @@ class Cursos{
         $datos = $this->recuperarDatosCurso();
         return json_encode($datos);
     }
+
+    // Funciones relacionadas al CRUD
+
+    public static function recuperarDatosCursoDB($legajo): array {
+        $conexion = new Conector();
+        $sql = "SELECT * FROM cursos WHERE legajo = ".$legajo;
+        $resultado = $conexion->query($sql);
+        $conexion->close();
+        return array('legajo' => $fila['legajo'], 'nombre_curso' => $fila['nombre_curso'], 'descripcion_curso' => $fila['descripcion_curso'], 'modalidad' => $fila['modalidad']);
+
+    }
+
     public static function recuperarListadoCursosDB($modalidad): array
     {
         $conexion = new Conector();
@@ -46,13 +60,14 @@ class Cursos{
         return $listadoCursos;
     }
 
-    public function insertarDatosCursoDB(): void
+    public function insertarDatosCursoDB($legajo,$nombre_curso, $descripcion_curso, $modalidad): void
     {
         $conexion = new Conector();
-        $sql = "INSERT INTO curso (legajo, nombre_curso, descripcion,modalidad) VALUES ('".$this->legajo."','".$this->nombreCurso."','".$this->descripcion."','".$this->modalidad."')";
+        $sql = "INSERT INTO curso (legajo, nombre_curso, descripcion,modalidad) VALUES ('".$legajo."','".$nombre_curso."','".$descripcion_curso."','".$modalidad."')";
         $conexion->query($sql);
         $conexion->close();
     }
+
     public function actualizarDatosCursoDB(): void
     {
         $conexion = new Conector();
@@ -60,10 +75,10 @@ class Cursos{
         $conexion->query($sql);
         $conexion->close();
     }
-    public function eliminarDatosCursoDB(): void
+    public static function eliminarDatosCursoDB($legajo): void
     {
         $conexion = new Conector();
-        $sql = "DELETE FROM curso WHERE legajo = '".$this->legajo."'";
+        $sql = "DELETE FROM curso WHERE legajo = '".$legajo."'";
         $conexion->query($sql);
         $conexion->close();
     }

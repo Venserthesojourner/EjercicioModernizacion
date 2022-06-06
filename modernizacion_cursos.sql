@@ -41,13 +41,13 @@ CREATE TABLE `cursos` (
 INSERT INTO `cursos` (`legajo`, `nombre_curso`, `descripcion_curso`, `modalidad`) VALUES
 (152637, 'Documental Periodístico para Redes', 'Comunicación y colaboración', 0),
 (123232, 'Producción Familiar de Huerta', 'Haciendo en casa', 1),
-(124442, 'Compostaje Urbano', 'Haciendo en casa', 1);
-(256485, 'Introducción al Stop Motion', 'Programación y diseño', 1);
-(324862, 'Fotografía básica de objetos y productos', 'Habilidades y herramientas para el trabajo', 0);
-(125632, 'Creación de Videojuegos: Narrativas Interactivas', 'Programación y diseño', 0);
-(951236, 'Introducción al Diseño', 'Programación y diseño', 1);
-(125267, 'Cuchillería Artesanal', 'Oficios', 0);
-(456232, 'Electrónica discreta', 'Fabricación', 1);
+(124442, 'Compostaje Urbano', 'Haciendo en casa', 1),
+(256485, 'Introducción al Stop Motion', 'Programación y diseño', 1),
+(324862, 'Fotografía básica de objetos y productos', 'Habilidades y herramientas para el trabajo', 0),
+(125632, 'Creación de Videojuegos: Narrativas Interactivas', 'Programación y diseño', 0),
+(951236, 'Introducción al Diseño', 'Programación y diseño', 1),
+(125267, 'Cuchillería Artesanal', 'Oficios', 0),
+(456232, 'Electrónica discreta', 'Fabricación', 1),
 (158426, 'Corte y Confección', 'Oficios', 0);
 
 -- --------------------------------------------------------

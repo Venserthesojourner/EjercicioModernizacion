@@ -4,6 +4,8 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/EjercicioModernizacion/Backend/modelo
 include_once $_SERVER['DOCUMENT_ROOT'] . '/EjercicioModernizacion/Backend/modelo/Genero.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/EjercicioModernizacion/Backend/modelo/Domicilio.php';
 
+
+
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'POST':
         $_POST = json_decode(file_get_contents('php://input'), true);
@@ -23,6 +25,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
         }
         break;
     case 'PUT':
+        $_PUT = json_decode(file_get_contents('php//input'),true);
+
         break;
     case 'DELETE':
         break;
