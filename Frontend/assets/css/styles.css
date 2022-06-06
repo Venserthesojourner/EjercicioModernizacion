@@ -1,0 +1,17 @@
+body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+main{
+    /*min-height: 100%;*/
+}
+footer{
+    color: whitesmoke;
+    min-height: 150px;
+}
+.active{
+    background-color: #f5f5f5;
+    font-size: 28px
+}
