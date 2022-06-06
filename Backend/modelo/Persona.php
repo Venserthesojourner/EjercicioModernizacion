@@ -67,7 +67,7 @@ class Persona
 
     // READ
 
-    public function recuperarDatosPersonaDB($documento): array{
+    public static function recuperarDatosPersonaDB($documento): array{
         $conexion = new Conector();
         $sql = "SELECT * FROM persona WHERE documento = '".$documento."'";
         $resultado = $conexion->query($sql);
@@ -93,8 +93,10 @@ class Persona
             $persona->documento = $fila['documento'];
             $persona->nombre = $fila['nombre_persona'];
             $persona->apellido = $fila['apellido_persona'];
+            $persona->direccion= $fila['direccion'];
             $persona->fechaNacimiento = new DateTime($fila['fecha_nacimiento']);
             $persona->genero = Genero::recuperarGeneroDB($fila['genero']);
+            $persona->codigoPostal = Domicilio::recuperarDatosDomicilioDB($fila['codigo_postal']);
             $personas[] = $persona;
         }
         $conexion->close();
@@ -103,8 +105,8 @@ class Persona
 
     // UPDATE
 
-    public function modificarPersonaDB(): void{
-        $conexion = new mysqli("localhost", "root", "", "modernizacion_cursos");
+    public function actualizarDatosPersonaDB(): void{
+        $conexion = new Conector();
         $sql = "UPDATE persona SET nombre = '".$this->nombre."', apellido = '".$this->apellido."', fechaNacimiento = '".$this->fechaNacimiento->format('Y-m-d')."', genero = '".$this->genero->id."' WHERE documento = '".$this->documento."'";
         $conexion->query($sql);
         $conexion->close();
@@ -112,9 +114,9 @@ class Persona
     
     // DELETE
 
-    public function eliminarPersonaDB(): void{
-        $conexion = new mysqli("localhost", "root", "", "modernizacion_cursos");
-        $sql = "DELETE FROM persona WHERE documento = '".$this->documento."'";
+    public static function eliminarPersonaDB($documento): void{
+        $conexion = new Conector();
+        $sql = "DELETE FROM persona WHERE documento = '".$documento."'";
         $conexion->query($sql);
         $conexion->close();
     }

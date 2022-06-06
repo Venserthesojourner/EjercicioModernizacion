@@ -1,7 +1,7 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] .'/EjercicioModernizacion/Frontend/frame/header.php';?>
     <div class="container">
-        <table class="table table-success table-striped table-hover" id="personas">
+        <table class="table table-secondary table-striped table-hover" id="personas">
             <thead>
             <tr>
                 <th scope="col">ID</th>

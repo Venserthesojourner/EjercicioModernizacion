@@ -110,7 +110,7 @@ const generarListadoCursos = () => {
                     </div>
                     
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item fs-4">${cursos[0].modalidad==0?"Grupal":"Individual"}</li>
+                        <li class="list-group-item fs-4">Modalidad : ${cursos[0].modalidad==0?"Grupal":"Individual"}</li>
                         <li class="list-group-item fs-4">${cursos[0].descripcion_curso}</li>
                         <li class="list-group-item fs-4">10</li>
                     </ul>
@@ -119,7 +119,7 @@ const generarListadoCursos = () => {
             </div>`;
     for (let i=1; i < this.cursos.length; i++){
         document.querySelector('#v-pills-tab').innerHTML += `
-        <a className="nav-link" id="v-pills-${cursos[i].legajo}-tab" data-bs-toggle="pill"
+        <a class="nav-link" id="v-pills-${cursos[i].legajo}-tab" data-bs-toggle="pill"
            data-bs-target="#v-pills-${cursos[i].legajo}" role="tab"
            aria-controls="v-pills-${cursos[i].legajo}" aria-selected="false">
             ${cursos[i].nombre_curso}

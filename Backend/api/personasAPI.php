@@ -4,20 +4,26 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/EjercicioModernizacion/Backend/modelo
 include_once $_SERVER['DOCUMENT_ROOT'] . '/EjercicioModernizacion/Backend/modelo/Genero.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/EjercicioModernizacion/Backend/modelo/Domicilio.php';
 
-
+$persona = new Persona();
 
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'POST':
         $_POST = json_decode(file_get_contents('php://input'), true);
-        $persona = new Persona();
         $persona->insertarDatosPersona($_POST['dni'],$_POST['nombre'],$_POST['apellido'],$_POST['fechaNacimiento'],$_POST['genero'], $_POST['domicilio'], $_POST['codigoPostal']);
         $persona->insertarDatosPersonaDB();
         break;
     case 'GET':
-        if(isset($_GET['id'])){
-            $persona = new Persona();
-            $persona->id = $_GET['id'];
-            $persona->recuperarDatosPersonaDB();
+        if(isset($_GET['documento'])){
+            $datos = $persona::recuperarDatosPersonaDB($_GET['documento']);
+            $persona->insertarDatosPersona(
+                $datos['documento'],
+                $datos['nombre'],
+                $datos['apellido'],
+                $datos['fechaNacimiento'],
+                $datos['genero'],
+                $datos['direccion'],
+                $datos['codigoPostal']
+            );
             $persona->recuperarDatosPersonaJSON();}
         else{
             $personas = Persona::recuperarListadoPersonasDB();
@@ -26,8 +32,18 @@ switch ($_SERVER['REQUEST_METHOD']) {
         break;
     case 'PUT':
         $_PUT = json_decode(file_get_contents('php//input'),true);
-
+        $persona->insertarDatosPersona(
+            $datos['documento'],
+            $datos['nombre'],
+            $datos['apellido'],
+            $datos['fechaNacimiento'],
+            $datos['genero'],
+            $datos['direccion'],
+            $datos['codigoPostal']
+        );
+        $persona->actualizarDatosPersonaDB();
         break;
     case 'DELETE':
+        Persona::eliminarPersonaDB($_GET['documento']);
         break;
 }

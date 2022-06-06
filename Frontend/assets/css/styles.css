@@ -25,7 +25,7 @@ footer {
 }
 
 .nav-pills .nav-link.active {
-    font-size: 28px;
+    font-size: 20px;
     background-color: #162638 !important;
     color: white;
     transition-property: background-color font-size;
