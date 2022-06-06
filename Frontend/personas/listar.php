@@ -1,7 +1,7 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] .'/EjercicioModernizacion/Frontend/frame/header.php';?>
     <div class="container">
-        <table class="table table-success table-striped table-hover">
+        <table class="table table-success table-striped table-hover" id="personas">
             <thead>
             <tr>
                 <th scope="col">ID</th>
@@ -13,20 +13,6 @@ include_once $_SERVER['DOCUMENT_ROOT'] .'/EjercicioModernizacion/Frontend/frame/
             </tr>
             </thead>
             <tbody>
-            <?php
-            if (isset($personas)) {
-                foreach ($personas["value"] as $persona) {
-                    echo "<tr>";
-                    echo "<th scope='row'>" . $persona["id"] . "</th>";
-                    echo "<td>" . $persona["dni"] . "</td>";
-                    echo "<td>" . $persona["razonSocial"] . "</td>";
-                    echo "<td>" . $persona["genero"]["value"] . "</td>";
-                    echo "<td>" . $persona["codigoPostal"]["postalID"] . "</td>";
-                    echo "<td>" . $persona["domicilio"] . "</td>";
-                    echo "</tr>";
-                }
-            }
-            ?>
             </tbody>
         </table>
     </div>

@@ -1,17 +1,37 @@
-body{
+body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
-main{
-    /*min-height: 100%;*/
-}
-footer{
+footer {
     color: whitesmoke;
-    min-height: 150px;
+    min-height: 100px;
 }
-.active{
-    background-color: #f5f5f5;
-    font-size: 28px
+.bg-primary {
+    background-color: #162638 !important;
+}
+.border-primary {
+    border-color: #162638 !important;
+}
+.text-primary {
+    color: #162638 !important;
+}
+
+.nav-link,
+.nav-link:focus,
+.nav-link:hover {
+    color: #162638;
+}
+
+.nav-pills .nav-link.active {
+    font-size: 28px;
+    background-color: #162638 !important;
+    color: white;
+    transition-property: background-color font-size;
+    transition-duration: 1.2s;
+}
+
+.card-title {
+    margin-bottom: 0;
 }

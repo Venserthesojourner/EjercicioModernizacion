@@ -16,6 +16,14 @@ class Genero
         $this->tag_genero = ""; // El tag_genero es una abreviación de nombre_genero, ej: Para el genero "Hombre" el tag_genero seria "H"
     }
 
+    /**
+     * @return int
+     */
+    public function getIDGenero(): int
+    {
+        return $this->id_genero;
+    }
+
     public function completarGenero($id_genero, $nombre_genero, $tag_genero): void
     {
         $this->id_genero = $id_genero;
@@ -50,11 +58,12 @@ class Genero
         $conexion = new Conector();
         $sql = "SELECT * FROM genero";
         $resultado = $conexion->query($sql);
+        $conexion->close();
         $listado = array();
         while ($fila = $resultado->fetch_assoc()) {
             $listado[] = array('genero_id' => $fila['genero_id'], 'nombre_genero' => $fila['nombre_genero'], 'tag_genero' => $fila['tag_genero']);
         }
-        $conexion->close();
+
         return $listado;
     }
 
